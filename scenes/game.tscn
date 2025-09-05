@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://o3a6qipvs82c"]
+[gd_scene load_steps=10 format=3 uid="uid://o3a6qipvs82c"]
 
 [ext_resource type="PackedScene" uid="uid://j75i4eomjbl8" path="res://scenes/player.tscn" id="1_5kiuu"]
 [ext_resource type="Script" uid="uid://cw3qr22vfrrvl" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://dpjfxmx4oj280" path="res://assets/sprites/world_tileset.png" id="2_dbls1"]
-[ext_resource type="Script" uid="uid://c83njbcotea6k" path="res://scenes/game_manager.gd" id="2_p57ef"]
+[ext_resource type="Script" uid="uid://c83njbcotea6k" path="res://scripts/game_manager.gd" id="2_p57ef"]
 [ext_resource type="PackedScene" uid="uid://dxx7mjn2ugu8u" path="res://scenes/coin.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bivgiecvr0t3b" path="res://scenes/killzone.tscn" id="5_p57ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_33cqm"]
 texture = ExtResource("2_dbls1")
@@ -141,6 +142,8 @@ texture = ExtResource("2_dbls1")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_33cqm")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u5sy4"]
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_iywne")
 
@@ -175,6 +178,16 @@ offset_right = 52.0
 offset_bottom = 23.0
 scale = Vector2(0.406006, 0.364701)
 text = "Score: "
+
+[node name="Killzone" parent="." instance=ExtResource("5_p57ef")]
+visibility_layer = 2
+position = Vector2(154, 137)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+visible = false
+visibility_layer = 2
+scale = Vector2(9.36396, 10.1811)
+shape = SubResource("WorldBoundaryShape2D_u5sy4")
 
 [node name="Coins" type="Node" parent="."]
 
