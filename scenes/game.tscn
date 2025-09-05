@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://o3a6qipvs82c"]
+[gd_scene load_steps=8 format=3 uid="uid://o3a6qipvs82c"]
 
 [ext_resource type="PackedScene" uid="uid://j75i4eomjbl8" path="res://scenes/player.tscn" id="1_5kiuu"]
+[ext_resource type="Script" uid="uid://cw3qr22vfrrvl" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://dpjfxmx4oj280" path="res://assets/sprites/world_tileset.png" id="2_dbls1"]
-[ext_resource type="Script" uid="uid://qi72o4qvt1x5" path="res://scenes/score.gd" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://c83njbcotea6k" path="res://scenes/game_manager.gd" id="2_p57ef"]
 [ext_resource type="PackedScene" uid="uid://dxx7mjn2ugu8u" path="res://scenes/coin.tscn" id="4_lbhrr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_33cqm"]
@@ -141,6 +142,11 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_33cqm")
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_iywne")
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_p57ef")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_xwcet")
@@ -154,27 +160,29 @@ position = Vector2(21, 46)
 position = Vector2(0, -6)
 zoom = Vector2(4, 4)
 
-[node name="Coin" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(59, 47)
-
-[node name="Coin2" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(104, 47)
-
-[node name="Coin3" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(79, 53)
-
-[node name="UserInterface" type="Control" parent="."]
+[node name="UserInterface" type="Control" parent="Player/Camera2D"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -123.0
-offset_top = -41.0
-offset_right = -83.0
-offset_bottom = -1.0
+offset_left = -144.0
+offset_top = -81.0
+offset_right = -132.0
+offset_bottom = -76.0
 
-[node name="score" type="Label" parent="UserInterface"]
+[node name="Score" type="Label" parent="Player/Camera2D/UserInterface"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_right = 48.0
+offset_right = 52.0
 offset_bottom = 23.0
-scale = Vector2(0.189366, 0.203923)
-text = "Score:"
-script = ExtResource("3_lnu2h")
+scale = Vector2(0.406006, 0.364701)
+text = "Score: "
+
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("4_lbhrr")]
+position = Vector2(59, 47)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("4_lbhrr")]
+position = Vector2(104, 47)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("4_lbhrr")]
+position = Vector2(79, 53)
