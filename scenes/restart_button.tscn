@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://pnli6u4ca5x"]
+
+[ext_resource type="Texture2D" uid="uid://08i3py5lifiw" path="res://Pixel Adventure/Menu/Buttons/Restart.png" id="1_fmbf5"]
+[ext_resource type="Script" uid="uid://iryghgwxl00n" path="res://scripts/restart_button.gd" id="1_vpy71"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpy71"]
+atlas = ExtResource("1_fmbf5")
+region = Rect2(0, 0, 20, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5uvvj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpy71")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RestartButton" type="Node2D"]
+script = ExtResource("1_vpy71")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5uvvj")

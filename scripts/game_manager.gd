@@ -4,5 +4,5 @@ extends Node
 var score = 0
 func add_point():
 	score += 100
-	score_label.text = "Score: %d" % score
+	score_label.text = "       :%d " % score
 	
